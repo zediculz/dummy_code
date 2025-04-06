@@ -13,7 +13,7 @@ function cipher(value: any): DummyCodeValue {
             const coded = datas.filter((d: any) => d?.value === letter);
 
             if (coded.length !== 0) {
-                str.push({ bin: coded[0].bin, code: coded[0].code });
+                str.push(coded[0]);
             }
         });
 
@@ -21,12 +21,18 @@ function cipher(value: any): DummyCodeValue {
     });
 
     let code = "";
+    let bin = "";
 
     str.flatMap((s) => {
+        bin += `${s?.bin} `;
         code += `${s?.code} `;
     });
 
-    return code;
+    return [bin, code]
+}
+
+function middleWare(dec:any) {
+    console.log(dec)
 }
 
 function decipher(code: DummyCodeValue) {
@@ -34,10 +40,13 @@ function decipher(code: DummyCodeValue) {
     const str: any[] = [];
 
     wCodes.flatMap((wCode: string) => {
+        const binned = datas.filter((d: any) => d?.bin?.toString() === wCode);
         const coded = datas.filter((d: any) => d?.code?.toString() === wCode);
         
         if (coded.length !== 0) {
-            str.push({ value: coded[0].value, code: coded[0].code });
+            str.push(coded[0]);
+        } else if(binned.length !== 0) {
+            str.push(binned[0]);
         }
     });
 
@@ -49,6 +58,7 @@ function decipher(code: DummyCodeValue) {
         }
     });
 
+    middleWare(str)
     return value;
 }
 
@@ -56,12 +66,14 @@ function decipher(code: DummyCodeValue) {
 class Dummy {
     /**@method encode is used to cipher value to DummyCode @param value */
     encode(value: any): DummyCodeValue {
-        return cipher(value);
+        const ciph =  cipher(value);
+        return ciph
     }
 
     /**@method decode is used to decipher DummyCode to value @param code */
     decode(code: DummyCodeValue) {
-        return decipher(code);
+        const deciph = decipher(code);
+        return deciph
     }
 }
 
