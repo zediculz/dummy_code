@@ -1,3 +1,5 @@
+export type DummyCodeValue = string
+
 export interface Data {
     value: string,
     code: string

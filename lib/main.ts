@@ -1,6 +1,6 @@
-import { datas } from "./util.ts"
+import { datas, DummyCodeValue } from "./util.ts"
 
-function decipher(value:string) {
+function cipher(value:string):DummyCodeValue {
     const words = value.split(" ")
     const str:any[] = []
     
@@ -23,13 +23,36 @@ function decipher(value:string) {
     return code
 }
 
+function decipher(code:DummyCodeValue) {
+    const wCodes = code.split(" ")
+    const str:any[] = []
+    
+    wCodes.flatMap((wCode: string, i: number) => {
+        const coded = datas.filter((d: any) => d?.code === wCode)
+        str.push(coded[0]?.value)
+    })
+
+    let value = ''
+
+    str.flatMap((s: string) => {
+        if (s !== undefined) {
+            value += `${s}`
+        }
+    })
+    
+    return value
+}
+
 /**@class Dummy */
 class Dummy { 
-    encode(value:string) { 
-       return decipher(value)
+    /**@method encode is used to decipher string to DummyCode @param value */
+    encode(value:string):DummyCodeValue { 
+       return cipher(value)
     }
 
-    decode() { }
+    decode(code: DummyCodeValue) {
+        return decipher(code)
+     }
 }
 
 /**@namespace dummy */

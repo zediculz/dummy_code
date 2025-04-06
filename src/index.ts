@@ -3,6 +3,8 @@ import './style.css'
 import { dummyCode } from "../lib/main.ts"
 
 
-const result = dummyCode.encode("12340 9")
+const code = dummyCode.encode("58")
+console.log("code: ", code)
 
-console.log(result)
+const res = dummyCode.decode(code)
+console.log("result", res)
