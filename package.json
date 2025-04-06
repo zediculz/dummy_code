@@ -1,19 +1,20 @@
 {
   "name": "dummy_code",
-  "private": true,
-  "version": "0.0.0",
+  "description": "a dummy_code like morse code",
+  "private": false,
+  "version": "0.0.1",
   "type": "module",
   "files": [
     "dist",
     "index.d.ts"
   ],
-  "main": "./dist/counter.umd.cjs",
-  "module": "./dist/counter.js",
+  "main": "./dist/dummy.umd.cjs",
+  "module": "./dist/dummy.js",
   "types": "./index.d.ts",
   "exports": {
     "types": "./index.d.ts",
-    "import": "./dist/counter.js",
-    "require": "./dist/counter.umd.cjs"
+    "import": "./dist/dummy.js",
+    "require": "./dist/dummy.umd.cjs"
   },
   "scripts": {
     "dev": "vite --port 6446",
