@@ -23,11 +23,7 @@ function cipher(value: any): DummyCodeValue {
     let code = "";
 
     str.flatMap((s) => {
-        if (typeof value === "number") {
-            code += `${s?.code} `;
-        } else {
-            code += `${s?.code} `;
-        }
+        code += `${s?.code} `;
     });
 
     return code;
@@ -38,15 +34,18 @@ function decipher(code: DummyCodeValue) {
     const str: any[] = [];
 
     wCodes.flatMap((wCode: string) => {
-        const coded = datas.filter((d: any) => d?.code === wCode);
-        str.push(coded[0]?.value);
+        const coded = datas.filter((d: any) => d?.code?.toString() === wCode);
+        
+        if (coded.length !== 0) {
+            str.push({ value: coded[0].value, code: coded[0].code });
+        }
     });
 
     let value = "";
 
-    str.flatMap((s: string) => {
+    str.flatMap((s: any) => {
         if (s !== undefined) {
-            value += `${s}`;
+            value += `${s?.value}`;
         }
     });
 
@@ -55,11 +54,12 @@ function decipher(code: DummyCodeValue) {
 
 /**@class Dummy */
 class Dummy {
-    /**@method encode is used to decipher string to DummyCode @param value */
+    /**@method encode is used to cipher value to DummyCode @param value */
     encode(value: any): DummyCodeValue {
         return cipher(value);
     }
 
+    /**@method decode is used to decipher DummyCode to value @param code */
     decode(code: DummyCodeValue) {
         return decipher(code);
     }

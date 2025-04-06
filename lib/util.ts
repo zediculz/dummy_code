@@ -1,4 +1,4 @@
-export type DummyCodeValue = string
+export type DummyCodeValue = any
 
 export interface Data {
     value: string,
