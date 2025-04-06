@@ -1,7 +1,8 @@
 import './style.css'
 
-import dummy from "../lib/main.ts"
+import { dummyCode } from "../lib/main.ts"
 
-dummy()
 
-console.log(dummy())
+const result = dummyCode.encode("12340 9")
+
+console.log(result)
