@@ -2,7 +2,7 @@
   "name": "dummy_code",
   "description": "a dummy_code like morse code",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "type": "module",
   "files": [
     "dist",

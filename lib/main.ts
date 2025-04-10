@@ -62,6 +62,7 @@ function decipher(code: DummyCodeValue) {
     return value;
 }
 
+
 /**@class Dummy */
 class Dummy {
     /**@method encode is used to cipher value to DummyCode @param value */
