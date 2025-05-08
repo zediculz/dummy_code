@@ -63,7 +63,6 @@ alpha.map((d) => {
 })
 
 
-
 const numbers:any[] = []
 number.map((d) => {
     const bin = d.code.toString(2)
